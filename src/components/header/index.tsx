@@ -3,10 +3,10 @@ import { Text } from "react-native";
 
 import * as S from "./style";
 
-export function Header(): JSX.Element {
+export function header() {
   return (
     <S.Header>
-      <Text>Opa</Text>
+      <Text>Header</Text>
     </S.Header>
   );
 }

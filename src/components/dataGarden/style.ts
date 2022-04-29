@@ -1,9 +1,16 @@
+import { getStatusBarHeight } from "react-native-iphone-x-helper";
 import styled from "styled-components/native";
 
+const innerHeight = getStatusBarHeight() + 17;
+
 export const Container = styled.View`
-  margin-top: -30px;
-  border-top-left-radius: 30px;
-  border-top-right-radius: 30px;
-  padding: 50px 25px;
-  background-color: #f8fafc;
+  width: 100%;
+  margin-top: 0px;
+  padding-top: ${() => `${innerHeight}px`};
+`;
+
+export const Header = styled.View`
+  width: 100%;
+  height: 60%;
+  background-color: green;
 `;

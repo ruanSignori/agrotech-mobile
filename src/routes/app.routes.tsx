@@ -1,11 +1,11 @@
 /* eslint-disable react/no-unstable-nested-components */
-import { FontAwesome5 } from "@expo/vector-icons";
+import { FontAwesome5, Ionicons } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import React from "react";
 
-import { ButtonHome } from "../components/ButtonHome";
 import { Home } from "../screens/home";
 import { Humidity } from "../screens/humidity";
+import { Login } from "../screens/login";
 import { Temperature } from "../screens/temperature";
 
 const Tab = createBottomTabNavigator();
@@ -21,30 +21,30 @@ export function AppRoutes(): JSX.Element {
           borderTopColor: "transparent",
           paddingVertical: 5,
         },
-        tabBarActiveTintColor: "#F8FAFC",
+        tabBarActiveTintColor: "#34D399",
       }}
     >
-      <Tab.Screen
-        name="Humidity"
-        component={Humidity}
-        options={{
-          tabBarIcon: ({ size, color }) => (
-            <FontAwesome5 name="percentage" size={size} color={color} />
-          ),
-        }}
-      />
+      <Tab.Screen name="Login" component={Login} />
       <Tab.Screen
         name="Home"
         component={Home}
         options={{
-          tabBarIcon: ({ focused, size, color }) => (
-            <ButtonHome size={size} color={color} focused={focused} />
+          tabBarIcon: ({ size, color }) => (
+            <Ionicons name="home" size={size} color={color} />
           ),
-          tabBarLabel: "",
         }}
       />
       <Tab.Screen
-        name="Temperature"
+        name="Humidade"
+        component={Humidity}
+        options={{
+          tabBarIcon: ({ size, color }) => (
+            <Ionicons name="water-outline" size={size} color={color} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Temperatura"
         component={Temperature}
         options={{
           tabBarIcon: ({ size, color }) => (
