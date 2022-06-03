@@ -1,5 +1,3 @@
-/* eslint-disable global-require */
-import LottieView from "lottie-react-native";
 import React from "react";
 import { Text, TouchableOpacity } from "react-native";
 
@@ -7,19 +5,28 @@ import { useAuth } from "../../hooks/useAuth";
 import * as S from "./style";
 
 export function CreateAccount() {
-  const { user } = useAuth();
+  const { user, signInAnonymous, signInWithGoogle } = useAuth();
+
+  const handleAcessAnonymous = async () => {
+    if (!user) await signInAnonymous();
+  };
+
+  const handleAcessGoogle = async () => {
+    if (!user) await signInWithGoogle();
+  };
+
+  console.log(`rota ${user}`);
 
   return (
     <S.Container>
-      <S.Container />
-      <LottieView
-        source={require("../../assets/animation/animationLogin.json")}
-        autoPlay
-        loop
-      />
-      <TouchableOpacity>
-        <Text>create</Text>
+      <TouchableOpacity onPress={() => handleAcessAnonymous()}>
+        <Text>Logar de forma anônima</Text>
       </TouchableOpacity>
+      <TouchableOpacity onPress={() => handleAcessGoogle()}>
+        <Text>Logar com o google</Text>
+      </TouchableOpacity>
+
+      <Text>{user?.id || "false"}</Text>
     </S.Container>
   );
 }

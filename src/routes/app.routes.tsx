@@ -1,7 +1,7 @@
 /* eslint-disable react/no-unstable-nested-components */
 import { FontAwesome5, Ionicons } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import { AuthContextProvider } from "../contexts/AuthContext";
 import { useAuth } from "../hooks/useAuth";
@@ -14,7 +14,7 @@ const Tab = createBottomTabNavigator();
 
 export function AppRoutes(): JSX.Element {
   const { user } = useAuth();
-
+  console.log(` rota1 ${user}`);
   return (
     <AuthContextProvider>
       <Tab.Navigator
@@ -29,11 +29,11 @@ export function AppRoutes(): JSX.Element {
           tabBarActiveTintColor: "#34D399",
         }}
       >
-        {!user && (
+        {!user?.id && (
           <Tab.Screen name="Create account" component={CreateAccount} />
         )}
 
-        {user && (
+        {user?.id && (
           <>
             <Tab.Screen
               name="Home"
