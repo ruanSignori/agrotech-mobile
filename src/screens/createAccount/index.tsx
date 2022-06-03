@@ -5,24 +5,14 @@ import { useAuth } from "../../hooks/useAuth";
 import * as S from "./style";
 
 export function CreateAccount() {
-  const { user, signInAnonymous, signInWithGoogle } = useAuth();
-
-  const handleAcessAnonymous = async () => {
-    if (!user) await signInAnonymous();
-  };
-
-  const handleAcessGoogle = async () => {
-    if (!user) await signInWithGoogle();
-  };
-
-  console.log(`rota ${user}`);
+  const { user } = useAuth();
 
   return (
     <S.Container>
-      <TouchableOpacity onPress={() => handleAcessAnonymous()}>
+      <TouchableOpacity onPress={() => ""}>
         <Text>Logar de forma anônima</Text>
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => handleAcessGoogle()}>
+      <TouchableOpacity onPress={() => ""}>
         <Text>Logar com o google</Text>
       </TouchableOpacity>
 
