@@ -1,16 +1,16 @@
 import React from "react";
-import { LogBox, Text } from "react-native";
+import { LogBox, Text, View } from "react-native";
 
 import { useAuth } from "../../hooks/useAuth";
-import * as S from "./style";
+import { styles } from "./styles";
 
 LogBox.ignoreLogs(["Setting a timer"]);
 
 export function Home(): JSX.Element {
   const { user } = useAuth();
   return (
-    <S.Container>
-      <Text>{user || "false"}</Text>
-    </S.Container>
+    <View style={styles.container}>
+      <Text>oPA</Text>
+    </View>
   );
 }

@@ -1,12 +1,12 @@
 import React from "react";
-import { Text } from "react-native";
+import { Text, View } from "react-native";
 
-import * as S from "./style";
+import { styles } from "./style";
 
 export function header() {
   return (
-    <S.Header>
+    <View style={styles.container}>
       <Text>Header</Text>
-    </S.Header>
+    </View>
   );
 }

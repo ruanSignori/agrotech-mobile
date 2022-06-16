@@ -4,6 +4,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 import { DataGarden } from "../../components/DataGarden";
 import { database, onValue, ref } from "../../services/firebase";
+import { styles } from "./styles";
 
 type DataFirebase = {
   humidity: number | null;
@@ -30,13 +31,7 @@ export function Humidity(): JSX.Element {
       {humidityPercentage !== null ? (
         <DataGarden dataFirebase={humidityPercentage} />
       ) : (
-        <SafeAreaView
-          style={{
-            alignContent: "center",
-            justifyContent: "center",
-            flex: 1,
-          }}
-        >
+        <SafeAreaView style={styles.container}>
           <ActivityIndicator size="large" color="#34D399" />
         </SafeAreaView>
       )}

@@ -1,5 +1,11 @@
 import { initializeApp } from "firebase/app";
-import { getAuth, signInAnonymously, onAuthStateChanged } from "firebase/auth";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  sendPasswordResetEmail,
+  onAuthStateChanged,
+} from "firebase/auth";
 import { getDatabase, get, ref, onValue } from "firebase/database";
 
 const firebaseConfig = {
@@ -23,6 +29,8 @@ export {
   get,
   ref,
   onValue,
-  signInAnonymously,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  sendPasswordResetEmail,
   onAuthStateChanged,
 };

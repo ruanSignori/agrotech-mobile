@@ -4,6 +4,8 @@ import { ActivityIndicator, SafeAreaView } from "react-native";
 
 import { DataGarden } from "../../components/DataGarden";
 import { database, ref, onValue } from "../../services/firebase";
+import { theme } from "../../styles/themes";
+import { styles } from "./styles";
 
 type DataFirebase = {
   humidity: number | null;
@@ -27,14 +29,8 @@ export function Temperature(): JSX.Element {
       {soilTemperature !== null ? (
         <DataGarden dataFirebase={soilTemperature} />
       ) : (
-        <SafeAreaView
-          style={{
-            alignContent: "center",
-            justifyContent: "center",
-            flex: 1,
-          }}
-        >
-          <ActivityIndicator size="large" color="#34D399" />
+        <SafeAreaView style={styles.container}>
+          <ActivityIndicator size="large" color={theme.colors.brand} />
         </SafeAreaView>
       )}
     </>
