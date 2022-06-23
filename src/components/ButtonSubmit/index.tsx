@@ -21,7 +21,7 @@ export function ButtonSubmit({
   return (
     <TouchableOpacity style={styles.button} {...rest} disabled={isLoading}>
       {isLoading ? (
-        <Loading color={theme.colors.brand_scundary} />
+        <Loading color={theme.colors.white} />
       ) : (
         <Text style={styles.title}>{title}</Text>
       )}

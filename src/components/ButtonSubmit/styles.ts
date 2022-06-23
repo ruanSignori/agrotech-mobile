@@ -13,7 +13,7 @@ export const styles = StyleSheet.create({
     borderRadius: 12,
   },
   title: {
-    color: theme.colors.brand_scundary,
+    color: theme.colors.white,
     fontWeight: "bold",
     fontSize: 16,
   },

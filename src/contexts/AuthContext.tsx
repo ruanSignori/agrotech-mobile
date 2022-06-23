@@ -33,23 +33,22 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
   const createUserWithEmail = async (email: string, password: string) => {
     await createUserWithEmailAndPassword(auth, email, password)
       .then((userCreated) => {
-        console.log("Usuário criado com sucesso", userCreated.user.uid);
+        console.log("Usuário criado com sucesso");
       })
       .catch((e) => {
-        e.JSON();
-      })
-      .finally(() => {
-        onAuthStateChanged(auth, (user) => {
-          if (user) {
-            const { uid, displayName } = user;
-
-            setUser({
-              id: uid,
-              name: displayName as string,
-            });
-          }
-        });
+        console.log(e);
       });
+
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        const { uid, displayName } = user;
+
+        setUser({
+          id: uid,
+          name: displayName as string,
+        });
+      }
+    });
   };
 
   const signInWithEmail = async (email: string, password: string) => {

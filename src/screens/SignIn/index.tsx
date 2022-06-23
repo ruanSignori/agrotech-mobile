@@ -1,21 +1,26 @@
+/* eslint-disable global-require */
 import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import Lottie from "lottie-react-native";
 import React, { useState } from "react";
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity, Image } from "react-native";
 
 import welcome from "../../assets/animation/welcome.json";
+import GoogleIconSrc from "../../assets/images/google-icon.png";
+import UserSecretSrc from "../../assets/images/user-secret-solid.png";
 import { ButtonSubmit } from "../../components/ButtonSubmit";
 import { Input } from "../../components/Input";
+import { SocialCard } from "../../components/SocialCard";
 import { useAuth } from "../../hooks/useAuth";
 import { theme } from "../../styles/themes";
 import { styles } from "./styles";
 
 export function SignIn() {
   const { signInWithEmail, resetPassword } = useAuth();
+  const [isLoading, setIsLoading] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
+
   const navigation = useNavigation();
 
   const handleOpenScreen = () => {
@@ -40,7 +45,6 @@ export function SignIn() {
         loop
         resizeMode="contain"
       />
-      <Text style={styles.subTitle}>Entre na conta que você registrou</Text>
       <Text style={styles.heading}>Entrar</Text>
       <Input placeholder="E-mail" value={email} onChangeText={setEmail} />
       <Input placeholder="Senha" value={password} onChangeText={setPassword} />
@@ -49,6 +53,13 @@ export function SignIn() {
         onPress={() => handleSignIn()}
         isLoading={isLoading}
       />
+      <Text style={styles.text}>Ou, entre com...</Text>
+
+      <View style={styles.signInWith}>
+        <SocialCard image={GoogleIconSrc} />
+        <SocialCard image={UserSecretSrc} />
+      </View>
+
       <View style={styles.others}>
         <TouchableOpacity
           style={styles.otherIcons}
@@ -62,6 +73,7 @@ export function SignIn() {
           />
           <Text>Criar conta</Text>
         </TouchableOpacity>
+
         <TouchableOpacity
           style={styles.otherIcons}
           onPress={() => handleForgotPassword()}
