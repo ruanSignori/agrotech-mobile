@@ -36,7 +36,19 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
         console.log("Usuário criado com sucesso");
       })
       .catch((e) => {
-        console.log(e);
+        const { code } = e;
+
+        switch (code) {
+          case "auth/invalid-email":
+            throw new Error("A valid e-mail is missing");
+          case "auth/internal-error":
+            throw new Error("Check the data and try again");
+          case "auth/missing-email":
+            throw new Error("An email is missing");
+          case "auth/weak-password":
+            throw new Error("Password must be at least 6 characters long");
+          default:
+        }
       });
 
     onAuthStateChanged(auth, (user) => {

@@ -22,7 +22,12 @@ export function Register() {
 
   const handleRegisterAccount = async () => {
     setIsLoading(true);
-    await createUserWithEmail(email, password);
+    try {
+      await createUserWithEmail(email, password);
+    } catch (e) {
+      console.log(e, "register");
+    }
+
     setIsLoading(false);
   };
 
@@ -41,6 +46,7 @@ export function Register() {
         title="Criar conta"
         isLoading={isLoading}
         onPress={() => handleRegisterAccount()}
+        disabled={isLoading}
       />
       <TouchableOpacity
         onPress={() => handleOpenScreen()}
