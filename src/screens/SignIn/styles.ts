@@ -10,7 +10,6 @@ export const styles = StyleSheet.create({
   },
   animation: {
     width: 300,
-    marginTop: -10,
   },
   heading: {
     alignSelf: "flex-start",
