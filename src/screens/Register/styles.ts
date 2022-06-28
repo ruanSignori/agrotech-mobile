@@ -3,24 +3,26 @@ import { getStatusBarHeight } from "react-native-iphone-x-helper";
 
 import { theme } from "../../styles/themes";
 
-const heightStatusBar = getStatusBarHeight() + 32;
-
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
     paddingHorizontal: 20,
+    paddingTop: getStatusBarHeight(),
+    paddingBottom: 70,
+    justifyContent: "flex-start",
+  },
+  animation: {
+    width: 300,
   },
   heading: {
     alignSelf: "flex-start",
     fontWeight: "bold",
     fontSize: 30,
     color: theme.colors.text,
-    marginBottom: 24,
-    marginTop: heightStatusBar,
   },
   form: {
-    marginTop: 100,
+    marginTop: 24,
     width: "100%",
   },
   backScreen: {
@@ -34,5 +36,11 @@ export const styles = StyleSheet.create({
     fontWeight: "bold",
     color: theme.colors.brand,
     fontSize: 14,
+  },
+  errorMessage: {
+    backgroundColor: theme.colors.red_secundary,
+    borderRadius: 6,
+    padding: 5,
+    color: theme.colors.red,
   },
 });

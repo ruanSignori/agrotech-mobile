@@ -3,14 +3,14 @@ import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import Lottie from "lottie-react-native";
 import React, { useState } from "react";
-import { View, Text, TouchableOpacity, Image } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 
 import welcome from "../../assets/animation/welcome.json";
 import GoogleIconSrc from "../../assets/images/google-icon.png";
 import UserSecretSrc from "../../assets/images/user-secret-solid.png";
+import { ButtonMethodSignIn } from "../../components/ButtonMethodSignIn";
 import { ButtonSubmit } from "../../components/ButtonSubmit";
 import { Input } from "../../components/Input";
-import { SocialCard } from "../../components/SocialCard";
 import { useAuth } from "../../hooks/useAuth";
 import { theme } from "../../styles/themes";
 import { styles } from "./styles";
@@ -29,7 +29,16 @@ export function SignIn() {
 
   const handleSignIn = async () => {
     setIsLoading(true);
-    await signInWithEmail(email, password);
+    try {
+      await signInWithEmail(email, password);
+    } catch (e) {
+      console.log(e);
+    }
+    setIsLoading(false);
+  };
+
+  const handleSignInWithGoogle = async () => {
+    console.log("click");
   };
 
   const handleForgotPassword = async () => {
@@ -53,11 +62,14 @@ export function SignIn() {
         onPress={() => handleSignIn()}
         isLoading={isLoading}
       />
-      <Text style={styles.text}>Ou, entre com...</Text>
+      <Text style={styles.text}>ou, entre com...</Text>
 
       <View style={styles.signInWith}>
-        <SocialCard image={GoogleIconSrc} />
-        <SocialCard image={UserSecretSrc} />
+        <ButtonMethodSignIn
+          image={GoogleIconSrc}
+          onPress={() => handleSignInWithGoogle()}
+        />
+        <ButtonMethodSignIn image={UserSecretSrc} />
       </View>
 
       <View style={styles.others}>

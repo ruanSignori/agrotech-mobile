@@ -11,7 +11,6 @@ import {
 
 type User = {
   id: string;
-  name: string;
 };
 
 type AuthContextType = {
@@ -25,6 +24,20 @@ type AuthContextProviderProps = {
   children: ReactNode;
 };
 
+function handleErrorSignInLogs(code: any) {
+  switch (code) {
+    case "auth/invalid-email":
+      throw new Error("E-mail inválido");
+    case "auth/internal-error":
+      throw new Error("Verifique os dados e tente novamente");
+    case "auth/missing-email":
+      throw new Error("Digite um e-mail");
+    case "auth/weak-password":
+      throw new Error("Senha deve conter pelo menos 6 caracteres");
+    default:
+  }
+}
+
 export const AuthContext = createContext({} as AuthContextType);
 
 export function AuthContextProvider({ children }: AuthContextProviderProps) {
@@ -33,48 +46,32 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
   const createUserWithEmail = async (email: string, password: string) => {
     await createUserWithEmailAndPassword(auth, email, password)
       .then((userCreated) => {
-        console.log("Usuário criado com sucesso");
-      })
-      .catch((e) => {
-        const { code } = e;
-
-        switch (code) {
-          case "auth/invalid-email":
-            throw new Error("A valid e-mail is missing");
-          case "auth/internal-error":
-            throw new Error("Check the data and try again");
-          case "auth/missing-email":
-            throw new Error("An email is missing");
-          case "auth/weak-password":
-            throw new Error("Password must be at least 6 characters long");
-          default:
-        }
-      });
-
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        const { uid, displayName } = user;
+        const { uid } = userCreated.user;
 
         setUser({
           id: uid,
-          name: displayName as string,
         });
-      }
-    });
+      })
+      .catch((error) => {
+        const { code } = error;
+
+        handleErrorSignInLogs(code as string);
+      });
   };
 
   const signInWithEmail = async (email: string, password: string) => {
     await signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        const { uid, displayName } = userCredential.user;
+        const { uid } = userCredential.user;
 
         setUser({
           id: uid,
-          name: displayName || "UsuárioCriadoAutomatico",
         });
       })
-      .catch((e) => {
-        return e.code;
+      .catch((error) => {
+        const { code } = error;
+
+        handleErrorSignInLogs(code);
       });
   };
 
@@ -96,6 +93,7 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
       resetPassword,
     };
   }, [user]);
+
   return (
     <AuthContext.Provider value={dependenciesValue}>
       {children}

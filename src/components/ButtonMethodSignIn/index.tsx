@@ -9,11 +9,14 @@ import {
 
 import { styles } from "./styles";
 
-type SocialCardProps = {
+type ButtonMethodSignInProps = {
   image: ImageSourcePropType;
 } & TouchableOpacityProps;
 
-export function SocialCard({ image, ...rest }: SocialCardProps) {
+export function ButtonMethodSignIn({
+  image,
+  ...rest
+}: ButtonMethodSignInProps) {
   return (
     <TouchableOpacity style={styles.container} {...rest}>
       <Image source={image} style={styles.image} />

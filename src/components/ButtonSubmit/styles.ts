@@ -11,6 +11,7 @@ export const styles = StyleSheet.create({
     backgroundColor: theme.colors.brand,
     padding: 12,
     borderRadius: 12,
+    marginTop: 8,
   },
   title: {
     color: theme.colors.white,
