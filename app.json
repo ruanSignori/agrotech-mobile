@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "agrotech",
-    "slug": "agrotech",
+    "name": "regtech",
+    "slug": "regtech",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -17,16 +17,27 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "config": {
+        "googleSignIn": {
+          "reservedClientId": "<YOUR_REVERSED_IOS_CLIENT_ID>"
+        }
+      },
+      "googleServicesFile": "./GoogleService-Info.plist"
     },
     "android": {
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#F8FAFC"
-      }
-    },
-    "web": {
-      "favicon": "./assets/favicon.png"
+      "package": "com.ruansignori.regtech"
     }
+  },
+  "android": {
+    "adaptiveIcon": {
+      "foregroundImage": "./assets/adaptive-icon.png",
+      "backgroundColor": "#F8FAFC"
+    },
+    "package": "example.expo.googlesignin",
+    "googleServicesFile": "./google-services.json"
+  },
+  "web": {
+    "favicon": "./assets/favicon.png"
   }
 }

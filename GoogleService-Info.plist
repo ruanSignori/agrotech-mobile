@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>833100699119-pigi71htvek62sd5451r7j9luoaqr633.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.833100699119-pigi71htvek62sd5451r7j9luoaqr633</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>833100699119-fjmkerm0vemom6h4kbohqeqlolulcnap.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDSCIKX7_bHVDAspBSyKdJmO4Ce7qIqArM</string>
+	<key>GCM_SENDER_ID</key>
+	<string>833100699119</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>regtech</string>
+	<key>PROJECT_ID</key>
+	<string>potenciometro-c797e</string>
+	<key>STORAGE_BUCKET</key>
+	<string>potenciometro-c797e.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:833100699119:ios:28fe0ab93b20b246b5d21a</string>
+	<key>DATABASE_URL</key>
+	<string>https://potenciometro-c797e-default-rtdb.firebaseio.com</string>
+</dict>
+</plist>

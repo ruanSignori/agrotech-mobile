@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "833100699119",
+    "firebase_url": "https://potenciometro-c797e-default-rtdb.firebaseio.com",
+    "project_id": "potenciometro-c797e",
+    "storage_bucket": "potenciometro-c797e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:833100699119:android:6601d7097683df9ab5d21a",
+        "android_client_info": {
+          "package_name": "Reg.tech12"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "833100699119-db4b2ii1130p9c1s0kfmog42n1btsarl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAH6LN83xbFVZSHDknTKuQVEKeGq_p5wro"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "833100699119-db4b2ii1130p9c1s0kfmog42n1btsarl.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "833100699119-pigi71htvek62sd5451r7j9luoaqr633.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "regtech"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

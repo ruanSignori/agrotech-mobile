@@ -1,12 +1,11 @@
+import * as WebBrowser from "expo-web-browser";
 import React, { createContext, ReactNode, useMemo, useState } from "react";
-import { Alert } from "react-native";
 
 import {
   auth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   sendPasswordResetEmail,
-  onAuthStateChanged,
 } from "../services/firebase";
 
 type User = {
@@ -17,6 +16,7 @@ type AuthContextType = {
   user: User | null;
   createUserWithEmail: (email: string, password: string) => Promise<void>;
   signInWithEmail: (email: string, password: string) => Promise<void>;
+  singInWithGoogle: () => Promise<void>;
   resetPassword: (email: string) => Promise<void>;
 };
 
@@ -24,7 +24,7 @@ type AuthContextProviderProps = {
   children: ReactNode;
 };
 
-function handleErrorSignInLogs(code: any) {
+const handleErrorSignInLogs = (code: any) => {
   switch (code) {
     case "auth/invalid-email":
       throw new Error("E-mail inválido");
@@ -36,7 +36,9 @@ function handleErrorSignInLogs(code: any) {
       throw new Error("Senha deve conter pelo menos 6 caracteres");
     default:
   }
-}
+};
+
+WebBrowser.maybeCompleteAuthSession();
 
 export const AuthContext = createContext({} as AuthContextType);
 
@@ -75,10 +77,14 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
       });
   };
 
+  const singInWithGoogle = async () => {
+    console.log("press");
+  };
+
   const resetPassword = async (email: string) => {
     await sendPasswordResetEmail(auth, email)
       .then(() => {
-        Alert.alert("Redefinir senha", "Enviamos um e-mail para você");
+        console.log("Redefinir senha", "Enviamos um e-mail para você");
       })
       .catch((error) => {
         throw new Error(error.code);
@@ -90,6 +96,7 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
       user,
       createUserWithEmail,
       signInWithEmail,
+      singInWithGoogle,
       resetPassword,
     };
   }, [user]);

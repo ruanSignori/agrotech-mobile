@@ -1,4 +1,3 @@
-/* eslint-disable global-require */
 import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import Lottie from "lottie-react-native";
@@ -16,7 +15,7 @@ import { theme } from "../../styles/themes";
 import { styles } from "./styles";
 
 export function SignIn() {
-  const { signInWithEmail, resetPassword } = useAuth();
+  const { signInWithEmail, resetPassword, singInWithGoogle } = useAuth();
   const [isLoading, setIsLoading] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -38,7 +37,7 @@ export function SignIn() {
   };
 
   const handleSignInWithGoogle = async () => {
-    console.log("click");
+    await singInWithGoogle();
   };
 
   const handleForgotPassword = async () => {
