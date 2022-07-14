@@ -13,5 +13,9 @@ web-build/
 *env.local
 .env
 
+# firebase
+GoogleService-Info.plist
+google-services.json
+
 # macOS
 .DS_Store

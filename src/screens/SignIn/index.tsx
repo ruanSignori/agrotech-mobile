@@ -36,8 +36,8 @@ export function SignIn() {
     setIsLoading(false);
   };
 
-  const handleSignInWithGoogle = async () => {
-    await singInWithGoogle();
+  const handleSignInWithGoogle = () => {
+    singInWithGoogle();
   };
 
   const handleForgotPassword = async () => {

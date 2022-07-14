@@ -19,8 +19,8 @@ export function Temperature(): JSX.Element {
     const statsGardenRef = ref(database, "/stats_garden");
 
     onValue(statsGardenRef, (value) => {
-      const data: DataFirebase = value.val();
-      setSoilTemperature(data.temperature);
+      const { temperature }: DataFirebase = value.val();
+      setSoilTemperature(temperature);
     });
   }, []);
 

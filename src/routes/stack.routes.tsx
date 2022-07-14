@@ -1,5 +1,6 @@
 import { FontAwesome5, Ionicons } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import * as WebBrowser from "expo-web-browser";
 import React from "react";
 
 import { Home } from "../screens/Home";

@@ -20,8 +20,10 @@ export function Humidity(): JSX.Element {
     const statsGardenRef = ref(database, "/stats_garden");
 
     onValue(statsGardenRef, (value) => {
-      const data: DataFirebase = value.val();
-      setHumidityPercentage(data.humidity);
+      const { humidity }: DataFirebase = value.val();
+      return () => {
+        setHumidityPercentage(humidity);
+      };
     });
   }, []);
 

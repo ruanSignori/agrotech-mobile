@@ -1,8 +1,18 @@
+import * as Google from "expo-auth-session/providers/google";
 import * as WebBrowser from "expo-web-browser";
-import React, { createContext, ReactNode, useMemo, useState } from "react";
+import React, {
+  createContext,
+  ReactNode,
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
 
 import {
   auth,
+  GoogleAuthProvider,
+  signInWithCredential,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   sendPasswordResetEmail,
@@ -16,8 +26,8 @@ type AuthContextType = {
   user: User | null;
   createUserWithEmail: (email: string, password: string) => Promise<void>;
   signInWithEmail: (email: string, password: string) => Promise<void>;
-  singInWithGoogle: () => Promise<void>;
   resetPassword: (email: string) => Promise<void>;
+  singInWithGoogle: () => Promise<void>;
 };
 
 type AuthContextProviderProps = {
@@ -44,6 +54,22 @@ export const AuthContext = createContext({} as AuthContextType);
 
 export function AuthContextProvider({ children }: AuthContextProviderProps) {
   const [user, setUser] = useState<User | null>(null);
+
+  const [request, response, promptAsync] = Google.useIdTokenAuthRequest({
+    clientId:
+      "833100699119-db4b2ii1130p9c1s0kfmog42n1btsarl.apps.googleusercontent.com",
+  });
+
+  const singInWithGoogle = useCallback(async () => {
+    if (response?.type === "success") {
+      const { id_token } = response.params;
+
+      const credential = GoogleAuthProvider.credential(id_token);
+      signInWithCredential(auth, credential);
+    }
+
+    await promptAsync();
+  }, [response]);
 
   const createUserWithEmail = async (email: string, password: string) => {
     await createUserWithEmailAndPassword(auth, email, password)
@@ -77,10 +103,6 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
       });
   };
 
-  const singInWithGoogle = async () => {
-    console.log("press");
-  };
-
   const resetPassword = async (email: string) => {
     await sendPasswordResetEmail(auth, email)
       .then(() => {
@@ -96,11 +118,10 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
       user,
       createUserWithEmail,
       signInWithEmail,
-      singInWithGoogle,
       resetPassword,
+      singInWithGoogle,
     };
   }, [user]);
-
   return (
     <AuthContext.Provider value={dependenciesValue}>
       {children}

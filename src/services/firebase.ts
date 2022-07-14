@@ -1,12 +1,13 @@
 import { initializeApp } from "firebase/app";
 import {
-  getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   sendPasswordResetEmail,
-  GoogleAuthProvider,
   signInWithPopup,
   signInWithRedirect,
+  getAuth,
+  GoogleAuthProvider,
+  signInWithCredential,
 } from "firebase/auth";
 import { getDatabase, get, ref, onValue } from "firebase/database";
 
@@ -24,12 +25,10 @@ initializeApp(firebaseConfig);
 
 const auth = getAuth();
 const database = getDatabase();
-const googleProvider = new GoogleAuthProvider();
 
 export {
   auth,
   database,
-  googleProvider,
   get,
   ref,
   onValue,
@@ -38,4 +37,6 @@ export {
   sendPasswordResetEmail,
   signInWithPopup,
   signInWithRedirect,
+  signInWithCredential,
+  GoogleAuthProvider,
 };
